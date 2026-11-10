@@ -1,0 +1,36 @@
+import time, sys, random
+
+chars = ["a","A","b","B","c","C","d","D","e","E","f","F","g","G","h","H","i","I","j","J","k","K","l","L","m","M","n","N","o","O","p","P","q","Q","r","R","s","S","t","T","u","U","v","V","w","W","x","X","y","Y","z","Z","0","1","2","3","4","5","6","7","8","9","!","\"","#","$","%","&","'","(",")","*","+",",","-",".","/",":",";","<","=",">","?","@","[","\\","]","^","_","`","{","|","}","~"," "]
+
+def sr(text, buffer=.01, Break=True):
+    for char in text:
+        if char not in chars:
+            print(char, end="", flush=True)
+            continue
+
+        temp_chars = chars.copy()      
+        random.shuffle(temp_chars)     
+
+        for i in range(len(temp_chars)):
+            var = temp_chars[i]
+            print(var, end="", flush=True)
+
+            if var == char:
+                break
+            
+            if buffer == 0:
+                continue
+            else:
+                time.sleep(buffer / len(chars))
+            sys.stdout.write("\b \b")
+            sys.stdout.flush()
+
+    if Break:
+        print("")
+     
+sr("hello there, this is some fun text aint it?")
+sr("you can make it really fast or ",0, False)        
+sr("slow",4)
+sr("it works by iterating through all the symbols on a standard keyboard until it matches the correct letter!")
+    
+time.sleep(1)
